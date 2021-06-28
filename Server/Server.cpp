@@ -6,10 +6,8 @@
 
 void Server::startAccept()
 {
-    // socket
     std::shared_ptr<Connection> newConnection = std::make_shared<Connection>(ioService);
 
-    // asynchronous accept operation and wait for a new connection.
     acceptor.async_accept(newConnection->getSocket(),
                           boost::bind(&Server::handleAccept, this, newConnection,
                                       boost::asio::placeholders::error));

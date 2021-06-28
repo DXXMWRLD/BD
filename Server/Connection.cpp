@@ -12,7 +12,7 @@ boost::asio::ip::tcp::socket& Connection::getSocket() {
 }
 void Connection::read() {
     socket.async_read_some(
-            boost::asio::buffer(data, max_length),
+            boost::asio::buffer(data, maxLength),
             boost::bind(&Connection::handleRead,
                         shared_from_this(),
                         boost::asio::placeholders::error,
@@ -20,11 +20,12 @@ void Connection::read() {
 }
 void Connection::write() {
     socket.async_write_some(
-            boost::asio::buffer(data, max_length),
+            boost::asio::buffer(data, maxLength),
             boost::bind(&Connection::handleWrite,
                         shared_from_this(),
                         boost::asio::placeholders::error,
                         boost::asio::placeholders::bytes_transferred));
+    std::memset(data, 0, maxLength);
 }
 void Connection::handleRead(const boost::system::error_code &err, size_t bytes_transferred) {
     if (!err) {

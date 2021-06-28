@@ -9,16 +9,17 @@
 #include <boost/bind.hpp>
 #include "Connection.h"
 
-class Server
-{
+class Server {
 private:
     boost::asio::ip::tcp::acceptor acceptor;
     boost::asio::io_service &ioService;
+
     void startAccept();
+
 public:
-//constructor for accepting connection from client
-    Server(boost::asio::io_service& ioService_, std::string address, unsigned int port);
-    void handleAccept(std::shared_ptr<Connection> con, const boost::system::error_code& err);
+    Server(boost::asio::io_service &ioService_, std::string address, unsigned int port);
+
+    void handleAccept(std::shared_ptr<Connection> con, const boost::system::error_code &err);
 };
 
 

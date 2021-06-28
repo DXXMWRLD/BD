@@ -13,9 +13,9 @@ class Connection : public std::enable_shared_from_this<Connection> {
 private:
     boost::asio::ip::tcp::socket socket;
     enum {
-        max_length = 1024
+        maxLength = 1024
     };
-    char data[max_length];
+    char data[maxLength];
 public:
     Connection(boost::asio::io_service &io_service);
 
